@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navRef = useRef<HTMLDivElement>(null);
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -18,8 +19,32 @@ const Navbar = () => {
 
   const isActive = (href: string) => location.pathname === href;
 
+  // ✅ Close menu when clicking outside navbar
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        navRef.current &&
+        !navRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
+
+  // ✅ Close menu on route change
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50">
+    <nav
+      ref={navRef}
+      className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50"
+    >
       <div className="container">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -57,7 +82,10 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="tel:+919691365052" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a
+              href="tel:+919691365052"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               <Phone className="w-4 h-4" />
               +91 9691365052
             </a>
@@ -68,8 +96,9 @@ const Navbar = () => {
 
           {/* Mobile Menu Toggle */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsOpen((prev) => !prev)}
             className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+            aria-label="Toggle Menu"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -90,7 +119,6 @@ const Navbar = () => {
                 <Link
                   key={link.href}
                   to={link.href}
-                  onClick={() => setIsOpen(false)}
                   className={`block py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
                     isActive(link.href)
                       ? "bg-primary/10 text-primary"
@@ -100,11 +128,10 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
+
               <div className="pt-3 border-t border-border">
                 <Button asChild className="w-full">
-                  <Link to="/contact" onClick={() => setIsOpen(false)}>
-                    Book Site Visit
-                  </Link>
+                  <Link to="/contact">Book Site Visit</Link>
                 </Button>
               </div>
             </div>

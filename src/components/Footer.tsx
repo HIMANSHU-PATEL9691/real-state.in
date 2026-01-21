@@ -22,7 +22,7 @@ const Footer = () => {
               {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href="https://www.linkedin.com/in/himanshu-patel-a43200329/"
                   className="w-9 h-9 rounded-full bg-sidebar-accent flex items-center justify-center hover:bg-sidebar-primary transition-colors"
                 >
                   <Icon className="w-4 h-4" />
@@ -78,8 +78,8 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-1 text-sidebar-primary" />
                 <span className="text-sidebar-foreground/70 text-sm">
-                  123 Real Estate Tower,<br />
-                  Anna Nagar, Chennai - 600040
+                  Ganesh Ward Kareli High School Road, <br />
+                  Kareli Main Rd, Kareli, Madhya Pradesh 487221
                 </span>
               </li>
               <li className="flex items-center gap-3">
