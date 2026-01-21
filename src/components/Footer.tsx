@@ -1,5 +1,36 @@
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+} from "lucide-react";
+
+const socialLinks = [
+  // {
+  //   icon: Facebook,
+  //   url: "https://www.facebook.com/",
+  //   label: "Facebook",
+  // },
+  // {
+  //   icon: Twitter,
+  //   url: "https://twitter.com/",
+  //   label: "Twitter",
+  // },
+  {
+    icon: Instagram,
+    url: "https://www.instagram.com/himanshupatel522/",
+    label: "Instagram",
+  },
+  {
+    icon: Linkedin,
+    url: "https://www.linkedin.com/in/himanshu-patel-a43200329/",
+    label: "LinkedIn",
+  },
+];
 
 const Footer = () => {
   return (
@@ -12,17 +43,27 @@ const Footer = () => {
               <div className="w-10 h-10 rounded-lg bg-sidebar-primary flex items-center justify-center">
                 <MapPin className="w-5 h-5 text-sidebar-primary-foreground" />
               </div>
-              <span className="text-xl font-heading font-bold text-card">PlotPrime</span>
+              <span className="text-xl font-heading font-bold text-card">
+                PlotPrime
+              </span>
             </Link>
+
             <p className="text-sidebar-foreground/70 text-sm leading-relaxed">
-              Your trusted partner in finding verified plots and land at prime locations. 
-              DTCP & RERA approved properties with complete legal documentation.
+              Your trusted partner in finding verified plots and land at prime
+              locations. DTCP & RERA approved properties with complete legal
+              documentation.
             </p>
+
+            {/* Social Links */}
             <div className="flex gap-3">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
+              {socialLinks.map(({ icon: Icon, url, label }) => (
                 <a
-                  key={i}
-                  href="https://www.linkedin.com/in/himanshu-patel-a43200329/"
+                  key={label}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  title={label}
                   className="w-9 h-9 rounded-full bg-sidebar-accent flex items-center justify-center hover:bg-sidebar-primary transition-colors"
                 >
                   <Icon className="w-4 h-4" />
@@ -33,7 +74,9 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading font-semibold text-card mb-4">Quick Links</h4>
+            <h4 className="font-heading font-semibold text-card mb-4">
+              Quick Links
+            </h4>
             <ul className="space-y-3">
               {[
                 { label: "Browse Plots", href: "/plots" },
@@ -56,9 +99,17 @@ const Footer = () => {
 
           {/* Locations */}
           <div>
-            <h4 className="font-heading font-semibold text-card mb-4">Popular Locations</h4>
+            <h4 className="font-heading font-semibold text-card mb-4">
+              Popular Locations
+            </h4>
             <ul className="space-y-3">
-              {["Chennai", "Bangalore", "Hyderabad", "Coimbatore", "Madurai"].map((loc) => (
+              {[
+                "Chennai",
+                "Bangalore",
+                "Hyderabad",
+                "Coimbatore",
+                "Madurai",
+              ].map((loc) => (
                 <li key={loc}>
                   <Link
                     to={`/locations/${loc.toLowerCase()}`}
@@ -73,7 +124,9 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-card mb-4">Contact Us</h4>
+            <h4 className="font-heading font-semibold text-card mb-4">
+              Contact Us
+            </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-1 text-sidebar-primary" />
@@ -82,15 +135,23 @@ const Footer = () => {
                   Kareli Main Rd, Kareli, Madhya Pradesh 487221
                 </span>
               </li>
+
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-sidebar-primary" />
-                <a href="tel:+919691365052" className="text-sidebar-foreground/70 hover:text-sidebar-primary text-sm transition-colors">
+                <a
+                  href="tel:+919691365052"
+                  className="text-sidebar-foreground/70 hover:text-sidebar-primary text-sm transition-colors"
+                >
                   +91 9691365052
                 </a>
               </li>
+
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-sidebar-primary" />
-                <a href="mailto:patelhimanshu6006@gmail.com" className="text-sidebar-foreground/70 hover:text-sidebar-primary text-sm transition-colors">
+                <a
+                  href="mailto:patelhimanshu6006@gmail.com"
+                  className="text-sidebar-foreground/70 hover:text-sidebar-primary text-sm transition-colors"
+                >
                   patelhimanshu6006@gmail.com
                 </a>
               </li>
@@ -98,15 +159,22 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Bottom Bar */}
         <div className="border-t border-sidebar-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sidebar-foreground/60 text-sm">
-            © 2026 Himanshu Patel . All rights reserved.
+            © 2026 Himanshu Patel. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-sidebar-foreground/60 hover:text-sidebar-primary text-sm transition-colors">
+            <a
+              href="#"
+              className="text-sidebar-foreground/60 hover:text-sidebar-primary text-sm transition-colors"
+            >
               Privacy Policy
             </a>
-            <a href="#" className="text-sidebar-foreground/60 hover:text-sidebar-primary text-sm transition-colors">
+            <a
+              href="#"
+              className="text-sidebar-foreground/60 hover:text-sidebar-primary text-sm transition-colors"
+            >
               Terms of Service
             </a>
           </div>
