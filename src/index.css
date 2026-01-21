@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Real Estate Plots & Land - Design System
+   Color Philosophy: Forest greens for trust & nature, warm earth tones for land
+   Typography: Clean, professional, easy to read
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Forest Green Theme */
+    --background: 40 33% 98%;
+    --foreground: 160 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 160 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 25% 12%;
+
+    /* Primary - Rich Forest Green */
+    --primary: 158 64% 28%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 158 45% 45%;
+    --primary-dark: 158 70% 18%;
+
+    /* Secondary - Warm Sand/Earth */
+    --secondary: 38 35% 92%;
+    --secondary-foreground: 160 25% 12%;
+
+    /* Muted - Soft Gray-Green */
+    --muted: 150 10% 94%;
+    --muted-foreground: 160 10% 45%;
+
+    /* Accent - Golden Earth */
+    --accent: 42 85% 55%;
+    --accent-foreground: 160 25% 12%;
+
+    /* Status Colors */
+    --success: 158 64% 35%;
+    --success-foreground: 0 0% 100%;
+    --warning: 42 85% 55%;
+    --warning-foreground: 160 25% 12%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* UI Elements */
+    --border: 150 15% 88%;
+    --input: 150 15% 88%;
+    --ring: 158 64% 28%;
+    --radius: 0.75rem;
+
+    /* Sidebar - Dashboard */
+    --sidebar-background: 160 30% 8%;
+    --sidebar-foreground: 150 10% 85%;
+    --sidebar-primary: 158 64% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 160 25% 15%;
+    --sidebar-accent-foreground: 150 10% 90%;
+    --sidebar-border: 160 20% 18%;
+    --sidebar-ring: 158 64% 45%;
+
+    /* Custom Design Tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(158 64% 28%) 0%, hsl(158 45% 38%) 100%);
+    --card-shadow: 0 4px 20px -4px hsl(160 25% 12% / 0.08);
+    --card-shadow-hover: 0 12px 40px -8px hsl(160 25% 12% / 0.15);
+    --glass-bg: hsl(0 0% 100% / 0.9);
+    --badge-available: 158 64% 35%;
+    --badge-sold: 0 72% 51%;
+    --badge-reserved: 42 85% 55%;
+  }
+
+  .dark {
+    --background: 160 25% 8%;
+    --foreground: 150 10% 95%;
+
+    --card: 160 25% 12%;
+    --card-foreground: 150 10% 95%;
+
+    --popover: 160 25% 12%;
+    --popover-foreground: 150 10% 95%;
+
+    --primary: 158 55% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 20% 18%;
+    --secondary-foreground: 150 10% 95%;
+
+    --muted: 160 20% 18%;
+    --muted-foreground: 150 10% 60%;
+
+    --accent: 42 75% 50%;
+    --accent-foreground: 160 25% 12%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 160 20% 22%;
+    --input: 160 20% 22%;
+    --ring: 158 55% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Hero Section Styles */
+  .hero-gradient {
+    background: var(--hero-gradient);
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      hsl(160 25% 12% / 0.4) 0%,
+      hsl(160 25% 12% / 0.6) 100%
+    );
+  }
+
+  /* Card Styles */
+  .card-elevated {
+    @apply bg-card rounded-xl;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  /* Glass Effect */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Status Badges */
+  .badge-available {
+    @apply bg-success text-success-foreground;
+  }
+
+  .badge-sold {
+    @apply bg-destructive text-destructive-foreground;
+  }
+
+  .badge-reserved {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  /* Gradient Text */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-light)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Dashboard Specific */
+  .dashboard-card {
+    @apply bg-card rounded-xl p-6;
+    box-shadow: var(--card-shadow);
+  }
+
+  .stat-card {
+    @apply dashboard-card relative overflow-hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    @apply absolute top-0 right-0 w-24 h-24 opacity-10;
+    background: radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%);
+  }
+}
+
+@layer utilities {
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from { 
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+}
