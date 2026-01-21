@@ -78,7 +78,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-1 text-sidebar-primary" />
                 <span className="text-sidebar-foreground/70 text-sm">
-                  Ganesh Ward Kareli High School Road, <br />
+                  Ganesh Ward Kareli High School Road,
                   Kareli Main Rd, Kareli, Madhya Pradesh 487221
                 </span>
               </li>
